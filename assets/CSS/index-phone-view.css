@@ -1,0 +1,668 @@
+@media (max-width: 749px) {
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+    
+    section{
+        max-height: 100vh;
+        height: 100%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 20px;
+    }
+    
+    .topBar{
+        display: flex;
+        align-items:flex-start;
+        justify-content: space-between;
+    }
+    
+    .settingsIcon>i{
+        position: relative;
+        font-size: 25px;
+        color: #77A0AB;
+        cursor: pointer;
+    }
+    .settingsIcon>i:active{
+        transform:  translate(-1px, 1px);
+    }
+    
+    .settingsMenu{
+        display: none;
+        position: absolute;
+        border-radius: 10px;
+        right: 40px;
+        height: 210px;
+        padding: 12px;
+        top: 90px;
+        background-color: #fff;
+        width: 200px;
+        font-size: 12.5px;
+        z-index: 2;
+        border: 1px solid grey;
+        box-shadow: 5px 5px 5px #00000048;
+    }
+    .settingsMenu.show {
+        display: block;
+      }
+    
+    .settingsHeader{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .settingsHeader i{
+        padding: 5px;
+        border-radius: 3px;
+    }
+    .settingsHeader i:active{
+        background-color: #188AAD;
+        color: white;
+        transform:  translate(-1px, 1px);
+    }
+    
+    .settingsBody{
+        display: block;
+        margin: 10px 0px 0px 0px;
+    }
+    
+    .resetUsername,.resetPwd,.theme{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 10px;
+    
+    }
+    
+    .resetUsername:active,
+    .resetPwd:active,
+    .theme:active{
+        background-color: #E8F4F6;
+        border-radius: 7px;
+    }
+    
+    #back-btn{
+        display: none;
+    }
+    
+    div.resetUsernamePage, div.resetPwdPage{
+        display: none;
+        line-height: 2em;
+        padding: 5px 8px;
+        width: 100%;
+    }
+    
+    div.resetUsernamePage input, div.resetPwdPage input{
+        display: block;
+        margin-bottom: 15px;
+        width: 100%;
+        font-size: 12px;
+        height: 25px;
+        padding: 0px 5px;
+        outline: none;
+        border: none;
+        background-color: #e3f2f6;
+        border-radius: 3px;
+        color: black;
+    }
+    
+    div.resetUsernamePage button, div.resetPwdPage button{
+        width: 100%;
+        height: 25px;
+        padding: 0px 5px;
+        background-color: #188AAD;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+    }
+    
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 37px;
+        height: 20px;
+      }
+      
+      /* Hide default HTML checkbox */
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      
+      /* The slider */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 13px;
+        width: 13px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      
+      input:checked + .slider {
+        background-color: #188AAD;
+      }
+      
+      /* input:focus + .slider {
+        box-shadow: 0 0 1px #188AAD;
+      } */
+      
+      input:checked + .slider:before {
+        -webkit-transform: translateX(15px);
+        -ms-transform: translateX(15px);
+        transform: translateX(15px);
+      }
+      
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 40px;
+      }
+      
+      .slider.round:before {
+        border-radius: 50%;
+      }
+    
+    
+    .topBarText{
+        line-height: 2em;
+    }
+    .topBarText h1{
+        font-size: 22px;
+    }
+    .topBarText p{
+        font-size: 2.5vw;
+        color: #808080;
+        font-weight: lighter;
+        font-style: oblique;
+    }
+    
+    .hedges{
+        position: relative;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding-bottom: 7px;
+        border-bottom: 2px solid #E3EAEC;
+        margin-bottom: 15px;
+    }
+    .hedges button{
+        height: 30px;
+        width: 40px;
+    }
+    
+    form.searchField{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #fff;
+        border: 2px solid #B3B3B3;
+        border-radius: 10px;
+        height: 40px;
+        margin-right: 2px;
+        width: inherit;
+        padding: 0px 10px 0px 20px;
+    }
+    
+    form.searchField input[type="text"]{
+        height: 30px;
+        outline: none;
+        border: none;
+        font-size: 16px;
+        width: inherit;
+    }
+    form.searchField button,
+    form.searchField div{
+        background-color: #ffffff00;
+        border: 2px solid #E3EAEC;
+        border-radius: 5px;
+        margin-left: 5px;
+        font-size: 14px;
+    }
+    form.searchField button:active,
+    form.searchField div:active{
+        background-color: #E3EAEC;
+        transform: translate(-1px, 1px);
+    }
+    
+    
+    div.filterBtn{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 10px;
+        width: 90px;
+        height: 30px;
+    }
+    
+    #filter-pane {
+        display: none;
+      }
+      
+      #filter-pane.show {
+        display: block;
+      }
+    
+    span.filterPane{
+        background-color: white;
+        display: block;
+        position: absolute;
+        padding: 5px 10px;
+        top: 65px;
+        min-width: 200px;
+        max-width: 80vw;
+        width: auto;
+        max-height: 140px;
+        line-height: 3em;
+        right: 40px;
+        z-index: 1;
+        border: 2px solid #E6E6E6;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    .fromFilter, .toFilter{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    input.fromDate[type="date"], input.toDate[type="date"]{
+        border: 1px solid grey;
+        width: 120px;
+        height: 25px;
+        padding: 0px 10px;
+        border-radius: 5px;
+    }
+    
+    .tally{
+        font-size: 30px;
+        color: #B3B3B3;
+    }
+    
+    .refreshBtn{
+        background-color: #ffffff00;
+        border: none;
+        color: #77A0AB;
+        font-size: 20px;
+        padding: 2.5px 5px;
+        border-radius: 4px;
+    }
+    .refreshBtn:active{
+        background-color:#77A0AB;
+        color: #fff;
+        transform: translate(-1px, 1px);
+    }
+    
+    div.container{
+        border: 1px solid #E6E6E6;
+        border-radius: 5px;
+        overflow: hidden; 
+        max-height: 70vh;
+    }
+    
+    table { 
+        width: 100%; 
+        border-collapse: collapse;
+        font-size: 2.2vw;
+    }
+    th, td { 
+        padding: 8px;
+        text-align: left; 
+    } 
+    
+    th { 
+        background-color: #188AAD;
+        color: white; 
+    }
+    tr:nth-child(even){
+        background-color: #E6E6E6;
+    }
+    
+    .pagination{
+        padding: 12px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .pageNoCount{
+        font-weight: bold;
+        color: #188AAD;
+    }
+    
+    .jumpToPage a{
+        color: #188AAD;
+        text-decoration: none;
+    }
+    
+    .jumpToPage input{
+        width: 40px;
+        padding: 0px 0px 0px 5px;
+        height: 25px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #AFCAD1;
+    }
+    
+    input[type="number"]::-webkit-inner-spin-button, 
+    input[type="number"]::-webkit-outer-spin-button {
+      height: 25px;
+      margin: 0;
+      border: none;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .paginationNavMenu{
+        display: flex;
+        width: 40%;
+        /* background-color: #188AAD; */
+        justify-content: space-between;
+    }
+    
+    .paginationNavMenu button{
+        background-color: #ffffff00;
+        border: none;
+        font-size: 14px;
+        color: #188AAD;
+        cursor: pointer;
+    
+    }
+    
+    .pageNavBtn{
+        width: 80%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .pageNavBtn a{
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }
+    .pageNavBtn a:nth-child(1){
+        background-color: #188AAD;
+        text-align: center;
+        padding: 5px 10px;
+        border-radius: 50%;
+        color: white;
+    }
+    
+    
+        /* Dark theme style */
+        .dark-theme {
+            background-color: #000;
+        }
+    
+        .dark-theme section{
+            background-color: #000f18;
+        }
+    
+        .dark-theme form, .dark-theme input{
+            background-color: #000f18;
+            color: white;
+        }
+    
+        .dark-theme form.searchField button,
+        .dark-theme form.searchField div{
+            background-color: #ffffff00;
+            color: white;
+            border: 2px solid #E3EAEC;
+        }
+        .dark-theme form.searchField button:active,
+        .dark-theme form.searchField div:active{
+            background-color: #E3EAEC;
+            color: #000;
+        }
+        .dark-theme form.searchField button:active,
+        .dark-theme form.searchField div:active{
+            background-color: #E3EAEC;
+            color: #000;
+            transform: translate(-1px, 1px);
+        }
+        
+        .dark-theme .topBarText h1 {
+            color: #fff;
+        }
+        
+        .dark-theme .topBarText p {
+            color: #ccc;
+        }
+    
+        .dark-theme .settingsIcon>i{
+            color: #77A0AB;
+        }
+        
+        .dark-theme .hedges {
+            border-bottom-color: #B3B3B3;
+        }
+        
+        .dark-theme .container{
+            background-color: #062630;
+            border: none;
+        }
+    
+        .dark-theme th {
+            background-color: #062630;
+        }
+    
+        .dark-theme tr:nth-child(even) {
+            background-color: #2e2e2e;
+            color: white;
+        }
+        .dark-theme tr:nth-child(odd) {
+            color: white;
+            background-color: #000f18;
+        }
+    
+        .dark-theme .pagination {
+            background-color: #062630;
+            color: white;
+        }
+        
+        .dark-theme .pageNoCount{
+            color: #AFCAD1;
+        }
+    
+        .dark-theme .jumpToPage a{
+            color: #AFCAD1;
+        }
+    
+        .dark-theme .jumpToPage input{
+            border: none;
+        }
+    
+        .dark-theme input[type="number"]::-webkit-inner-spin-button, 
+        .dark-theme input[type="number"]::-webkit-outer-spin-button {
+            filter: invert();
+        }
+    
+    
+        .dark-theme .paginationNavMenu button{
+            background-color: #ffffff00;
+            color: #77A0AB;
+    
+        }
+        .dark-theme .pageNavBtn a{
+            color: white;
+        }
+        .dark-theme .pageNavBtn a:nth-child(1){
+            background-color: #77A0AB;
+            color: white;
+        }
+    
+        .dark-theme .settingsMenu{
+            background-color: #000f18;
+            border: none;
+            color: white;
+            box-shadow: 5px 5px 5px #42616a4f;
+        }
+    
+        .dark-theme .settingsHeader i:active{
+            background-color: #77A0AB;
+            color: white;
+        }
+        .dark-theme .settingsHeader i:active{
+            background-color: #77A0AB;
+            color: white;
+        }
+    
+    
+        .dark-theme .resetUsername:active,
+        .dark-theme .resetPwd:active,
+        .dark-theme .theme:active{
+            background-color: #0a262b;
+            border-radius: 7px;
+        }
+        
+        .dark-theme .slider {
+            background-color: #77A0AB;
+        }
+        
+        .dark-theme .slider:before {
+            background-color: #0a262b;
+        }
+        
+        .dark-theme :checked + .slider {
+            background-color: #77A0AB;
+        }
+    
+        .dark-theme .resetUsernamePage input,.dark-theme div.resetPwdPage input{
+            background-color: #2d3638;
+            border-radius: 3px;
+            color: white;
+        }
+        
+        .dark-theme div.resetUsernamePage button,.dark-theme div.resetPwdPage button{
+            background-color: #77A0AB;
+            color: white;
+        }
+        
+        .dark-theme span.filterPane{
+            background-color: #000;
+            box-shadow: 5px 5px 5px #42616a87;
+            border: none;
+        }
+    
+        .dark-theme input.fromDate[type="date"], 
+        .dark-theme input.toDate[type="date"]{
+            border: 1px solid grey;
+            color: white;
+        }
+    
+        .dark-theme ::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+        
+        @media (max-width: 450px) {
+            .hedges{
+                width: 100%;
+                padding-bottom: 7px;
+                border-bottom: 1.5px solid #E3EAEC;
+                margin-bottom: 10px;
+            }
+            .hedges button{
+                height: 22px;
+                width: 30px;
+            }
+            
+            form.searchField{
+                border: 1.5px solid #B3B3B3;
+                border-radius: 5px;
+                height: 30px;
+                padding: 0px 10px 0px 10px;
+            }
+            
+            form.searchField input[type="text"]{
+                height: 20px;
+                font-size: 12px;
+                width: inherit;
+            }
+            form.searchField button,
+            form.searchField div{
+                border: 1.5px solid #E3EAEC;
+                border-radius: 5px;
+                margin-left: 5px;
+                font-size: 11px;
+            }
+            
+            div.filterBtn{
+                padding: 0 5px;
+                width: 70px;
+                height: 22px;
+            }
+
+            .tally{
+                font-size: 16px;
+            }
+            
+            .refreshBtn{
+                font-size: 14px;
+            }
+            
+
+
+            .pageCount{
+                position: absolute;
+                bottom: 10px;
+            }
+
+            .pagination{
+                font-size: 12px;
+            }
+            
+            
+            .jumpToPage input{
+                width: 30px;
+                height: 20px;
+                border-radius: 2px;
+                font-size: 11px;
+            }
+            
+            input[type="number"]::-webkit-inner-spin-button, 
+            input[type="number"]::-webkit-outer-spin-button {
+              height: 20px;
+            }
+            
+            .paginationNavMenu{
+                display: flex;
+                width: 50%;
+            }
+            
+            .paginationNavMenu button{
+                font-size: 12px;
+            }
+            
+            .pageNavBtn{
+                width: 80%;
+            }
+
+            .pageNavBtn a:nth-child(1){
+                padding: 3px 6.5px;
+            }
+            
+        }
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="fontawesome-pro-6.5.0-web/css/all.css">
+    <link rel="stylesheet" href="index-laptop-view.css">
+    <link rel="stylesheet" href="index-phone-view.css">
+</head>
+<body>
+    <!-- Section to house the contents of the webpage -->
+    <section>
+        <!-- Div with a class of topBar that contains all the items at the top of the page -->
+        <div class="topBar">
+            <!-- Div to house the contents at the top bar left -->
+            <div class="topBarText">
+                <h1>Records</h1>
+                <p>Welcome to the Records page. Here you will find all user records</p>
+            </div>
+            <!-- To house the settings icon and menu -->
+            <div class="settingsIcon" id="settings-icon">
+                <i class="fa-solid fa-gear"></i>
+                <!-- For the settings pop up menu -->
+                <div class="settingsMenu" id="settings-menu">
+                    <!-- Top/Header section of the settings Menu -->
+                    <div class="settingsHeader">
+                        <h2>Settings</h2>
+                        <div id="close-btn"><i class="fa-solid fa-xmark-large"></i></div>
+                        <div id="back-btn"><i class="fa fa-arrow-left"></i></div>
+
+                    </div>
+                    <!-- Body of the settings menu -->
+                    <div class="settingsBody">
+                        <!-- To change username -->
+                        <div class="resetUsername" id="reset-username">
+                            <p>Change your username</p>
+                            <i class="fa-solid fa-angle-right"></i>
+                        </div>
+
+                        <div class="resetUsernamePage" id="reset-usernamePage">
+                            <input type="text" placeholder="Enter your username" id="enter-username" 
+                            class="enterUsername">
+                            <input type="text" placeholder="Confirm your username" id="confirm-username" 
+                            class="confirmUsername">
+                            <button id="reset-username-btn" class="resetUsernameBtn">Reset</button>
+                        </div>
+                        <!-- To change password -->
+                        <div class="resetPwd" id="reset-pwd">
+                            <p>Change your password</p>
+                            <i class="fa-solid fa-angle-right"></i>
+                        </div>
+
+                        <div class="resetPwdPage" id="reset-pwd-page">
+                            <input type="password" placeholder="Enter your password" id="enter-pwd" 
+                            class="enterpwd">
+                            <input type="password" placeholder="Confirm your password" id="confirm-pwd" 
+                            class="confirmPwd">
+                            <button id="reset-pwd-btn" class="resetPwdBtn">Reset</button>
+                        </div>
+
+                        <!-- To switch theme -->
+                        <div class="theme" id="theme">
+                            <p>Switch Theme</p>
+                            <!-- For the toggle switch -->
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Div to house the search, filter and refresh btn -->
+        <div class="hedges">
+            <!-- Form for searching and filtering -->
+            <form action="" class="searchField" id="search-field">
+                <input type="text" placeholder="search">
+                <button class="searchBtn" id="search-btn"><i class="fas fa-search"></i></button>
+                <div class="filterBtn" id="filter-btn">
+                    <i class="fa-solid fa-bars-filter"></i>
+                    <span>Filter</span>
+                </div>
+                <span class="filterPane" id="filter-pane">
+                    <span class="fromFilter" id="from-filter">
+                        <label for="">FROM:</label>
+                        <input type="date" id="from-date" class="fromDate">
+                    </span>
+                    <span class="toFilter" id="to-filter">
+                        <label for="">TO:</label>
+                        <input type="date" id="to-date" class="toDate">
+                    </span>
+                    <button id="filter-go" class="filterGo">GO</button>
+                </span>
+            </form>
+            <!-- Separator line to separate the refresh btn from the form -->
+            <span class="tally">|</span>
+            <div class="refreshBtn" id="refresh-btn"><i class="fas fa-redo"></i></div>
+        </div>
+        <!-- Container to house the table and the pagination -->
+        <div class="container">
+            <table> 
+                <thead> 
+                    <tr> 
+                        <th>Email</th> 
+                        <th>Password</th> 
+                        <th>Date</th> 
+                        <th>Time</th> 
+                    </tr> 
+                </thead> 
+                <tbody id="recordTable"> 
+                    <!-- Data will be inserted here dynamically -->
+                    <tr>
+                        <td>julianwilson@gmail.com</td>
+                        <td>G#4dJ8pL</td>
+                        <td>05-01-2025</td>
+                        <td>03:45 AM</td>
+                    </tr>
+                    <tr>
+                        <td>emilychen123@gmail.com</td>
+                        <td>KpL9tR$e</td>
+                        <td>12-01-2025</td>
+                        <td>09:10 AM</td>
+                    </tr>
+                    <tr>
+                        <td>michaeljensen90@gmail.com</td>
+                        <td>aE6gU3mP</td>
+                        <td>20-01-2025</td>
+                        <td>02:25 PM</td>
+                    </tr>
+                    <tr>
+                        <td>sophiepatel@gmail.com</td>
+                        <td>RtyUioP$1</td>
+                        <td>02-01-2025</td>
+                        <td>07:58 AM</td>
+                    </tr>
+                    <tr>
+                        <td>oliverlee22@gmail.com</td>
+                        <td>9tBnHjM4</td>
+                        <td>15-01-2025</td>
+                        <td>11:42 AM</td>
+                    </tr>
+                    <tr>
+                        <td>avajones@gmail.com</td>
+                        <td>LpM5tR$eK</td>
+                        <td>28-01-2025</td>
+                        <td>06:35 PM</td>
+                    </tr>
+                        <tr>
+                        <td>ethanmorgan@gmail.com</td>
+                        <td>eJ9aT6sR</td>
+                        <td>01-02-2025</td>
+                        <td>04:20 AM</td>
+                    </tr>
+                        <tr>
+                        <td>charlottebrown@gmail.com</td>
+                        <td>4dFhG8jL</td>
+                        <td>05-02-2025</td>
+                        <td>08:15 AM</td>
+                    </tr>
+                    <tr>
+                        <td>loganhall@gmail.com</td>
+                        <td>pL1aSdFg</td>
+                        <td>08-02-2025</td>
+                        <td>12:48 PM</td>
+                    </tr>
+                    <tr>
+                        <td>gabriellaperez@gmail.com</td>
+                        <td>3mP4tY$e</td>
+                        <td>12-02-2025</td>
+                        <td>04:30 PM</td>
+                    </tr>
+                    <tr>
+                        <td>benjaminmartin@gmail.com</td>
+                        <td>HjM5tR$eK</td>
+                        <td>18-02-2025</td>
+                        <td>08:55 PM</td>
+                    </tr>
+                    <tr>
+                        <td>kevindavis@gmail.com</td>
+                        <td>aE6gR$eJ</td>
+                        <td>25-02-2025</td>
+                        <td>11:40 PM</td>
+                    </tr> 
+                </tbody>    
+            </table>
+            <div class="pagination" id="pagination"> 
+                <!-- Pagination links will be inserted here dynamically -->
+                 <div class="pageCount">
+                    <span>Total:</span>
+                    <span class="pageNoCount" id="page-no-count">11</span>
+                 </div>
+
+                 <div class="jumpToPage">
+                    <a href="">Go to page:</a>
+                    <input type="number" name="" id="" min="1">
+                 </div>
+                 
+                 <div class="paginationNavMenu">
+                    <button><i class="fa-solid fa-angle-left"></i></button>
+                    <span class="pageNavBtn">
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                        <a href="">4</a>
+                        <a href="">....</a>
+                    </span>
+                    <button><i class="fa-solid fa-angle-right"></i></button>
+                 </div>
+            </div>  
+        </div>
+        
+
+    </section>
+
+    <script src="index.js"></script>
+</body>
+</html>
