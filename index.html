@@ -6,7 +6,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/fontawesome-pro-6.5.0-web/css/all.css">
     <link rel="stylesheet" href="assets/CSS/index-laptop-view.css">
-    <link rel="stylesheet" href="assets/CSS/index-laptop-view.css">
+    <link rel="stylesheet" href="assets/CSS/index-phone-view.css">
 </head>
 <body>
     <!-- Section to house the contents of the webpage -->
@@ -57,6 +57,21 @@
                             <input type="password" placeholder="Confirm your password" id="confirm-pwd" 
                             class="confirmPwd">
                             <button id="reset-pwd-btn" class="resetPwdBtn">Reset</button>
+                        </div>
+
+                        <div class="generateLinks" id="generate-links">
+                            <p>Generate Links</p>
+                            <i class="fa-solid fa-angle-right"></i>
+                        </div>
+                        <!-- Generate Links Page -->
+                        <div class="generateLinksPage" id="generate-links-page">
+                            <p>Generate Links</p>
+                            <div class="generateLinksField" id="generate-links-field">
+                                <input type="number" min="1" max="100" id="generate-links-num">
+                                <button>Generate</button>
+                            </div>
+                            <button class="viewLinksHistory" id="view-links-history">View Links</button>
+                            <button class="clearLinksHistory" id="clear-link-history">Clear Links</button>
                         </div>
 
                         <!-- To switch theme -->
@@ -214,6 +229,6 @@
 
     </section>
 
-    <script src="index.js"></script>
+    <script src="assets/JS/index.js"></script>
 </body>
 </html>

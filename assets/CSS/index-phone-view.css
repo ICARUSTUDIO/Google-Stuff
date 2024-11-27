@@ -35,7 +35,7 @@
         position: absolute;
         border-radius: 10px;
         right: 40px;
-        height: 210px;
+        height: 240px;
         padding: 12px;
         top: 90px;
         background-color: #fff;
@@ -69,7 +69,7 @@
         margin: 10px 0px 0px 0px;
     }
     
-    .resetUsername,.resetPwd,.theme{
+    .resetUsername,.resetPwd,.generateLinks,.theme{
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -79,6 +79,7 @@
     
     .resetUsername:active,
     .resetPwd:active,
+    .generateLinks:active,
     .theme:active{
         background-color: #E8F4F6;
         border-radius: 7px;
@@ -88,7 +89,7 @@
         display: none;
     }
     
-    div.resetUsernamePage, div.resetPwdPage{
+    div.resetUsernamePage, div.resetPwdPage, div.generateLinksPage{
         display: none;
         line-height: 2em;
         padding: 5px 8px;
@@ -118,6 +119,51 @@
         border: none;
         border-radius: 3px;
         font-size: 12px;
+    }
+
+    .generateLinksField{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 25px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+    .generateLinksField input[type='number']{
+        margin-bottom: 15px;
+        width: 60%;
+        height: 25px;
+        padding-left: 5px;
+        margin-right: 10px;
+        outline: none;
+        border: none;
+        background-color: #e3f2f6;
+        border-radius: 3px;
+        color: black;
+    }
+
+    .generateLinksPage button{
+        width: 100%;
+        height: 25px;
+        margin-bottom: 10px;
+        padding: 0px 5px;
+        background-color: #188AAD;
+        color: white;
+        border: none;
+        border-radius: 3px;
+    }
+
+    .generateLinksField button{
+        background-color: #0bd900;
+    }
+
+    button.clearLinksHistory{
+        background-color: #c50000;
+
+    }
+
+    .generateLinksPage button:active{
+        transform: translate(-1px, 1px);
     }
     
     /* The switch - the box around the slider */
@@ -533,6 +579,7 @@
     
         .dark-theme .resetUsername:active,
         .dark-theme .resetPwd:active,
+        .dark-theme .generateLinks:active,
         .dark-theme .theme:active{
             background-color: #0a262b;
             border-radius: 7px;
@@ -550,15 +597,26 @@
             background-color: #77A0AB;
         }
     
-        .dark-theme .resetUsernamePage input,.dark-theme div.resetPwdPage input{
+        .dark-theme .resetUsernamePage input,.dark-theme div.resetPwdPage input,
+        .dark-theme .generateLinksField input[type='number']{
             background-color: #2d3638;
             border-radius: 3px;
             color: white;
         }
         
-        .dark-theme div.resetUsernamePage button,.dark-theme div.resetPwdPage button{
+        .dark-theme div.resetUsernamePage button,
+        .dark-theme div.resetPwdPage button,
+        .dark-theme button.viewLinksHistory{
             background-color: #77A0AB;
             color: white;
+        }
+
+        .dark-theme button.clearLinksHistory{
+            background-color: #cc4b4b;
+        }
+
+        .dark-theme .generateLinksField button{
+            background-color: #4fbe5c;
         }
         
         .dark-theme span.filterPane{
