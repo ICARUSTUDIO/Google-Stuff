@@ -1,0 +1,78 @@
+<?php
+session_start();
+
+// Default admin credentials
+$default_username = 'admin';
+$default_password = 'admin';
+
+// Handle login attempt
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Load stored credentials
+    $credentials_file = 'admin_credentials.json';
+    $stored_credentials = file_exists($credentials_file) 
+        ? json_decode(file_get_contents($credentials_file), true)
+        : ['username' => 'admin', 'password' => password_hash('admin', PASSWORD_DEFAULT)];
+
+    // Verify credentials
+    $username_match = $username === $stored_credentials['username'];
+    $password_match = password_verify($password, $stored_credentials['password']);
+
+    if ($username_match && $password_match) {
+        // Set session variables to indicate logged in
+        $_SESSION['logged_in'] = true;
+        $_SESSION['username'] = $username;
+        
+        // Redirect to user dashboard
+        header("Location: user-dashboard.php");
+        exit();
+    } else {
+        $error = "Invalid username or password";
+    }
+}
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign In</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="fontawesome-pro-6.5.0-web/css/all.css">
+        <link rel="stylesheet" href="assets/CSS/login.css">
+    </head>
+    <body>
+        <section>
+                <form method="POST" action="">
+                        <h2> Sign in</h2>
+                        <?php 
+                        if (isset($error)) {
+                            echo "<p style='color: red; text-align: center;'>$error</p>";
+                        }
+                        ?>
+                        <div class = "inputFields username">
+                            <input type = "text"name = "username" id = "username" required value="admin">
+                            <label for="username" id="UsernameIco&Txt">
+                                <i class="fa fa-user"> </i>
+                                Username
+                            </label>
+                        </div> 
+                        
+                        <div class = "inputFields password">	
+                            <input type = "password"name = "password" id = "password" required value="admin">
+                            <label for="password" id="PasswordIco&Txt">
+                                <i class="fa fa-lock"> </i>
+                                Password
+                            </label>
+                        </div>
+                        <div class="Rememberme">
+                            <label><input type="checkbox" name = "Rememberme" id = "Rememberme">Remember me</label>
+                        </div>
+                        <div class="Login">
+                            <button type="submit" class="button">Login</button>
+                        </div>
+                </form>
+        </section>
+    </body>
+</html>
