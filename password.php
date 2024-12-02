@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute the statement
     if ($stmt->execute()) {
         // Redirect to dashboard or show success message
-        header("Location: user-dash.php");
+        header("Location: errorpage.html");
         exit();
     } else {
         echo "Error: " . $stmt->error;
