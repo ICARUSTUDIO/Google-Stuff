@@ -70,6 +70,24 @@ if (isset($_POST['action']) && $_POST['action'] === 'reset_password') {
     exit();
 }
 
+// Function to generate unique link
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_link'])) {
+    $baseUrl = "http://localhost/redirect.php"; // Redirect handler
+    $uniqueId = "google-" . bin2hex(random_bytes(4)); 
+    $redirectUrl = "http://localhost/index.php"; // Replace with your main page
+
+    // Insert into database
+    $sql = "INSERT INTO generated_links (unique_id, redirect_url) VALUES ('$uniqueId', '$redirectUrl')";
+    if ($conn->query($sql) === TRUE) {
+        $generatedLink = $baseUrl . "?id=" . $uniqueId;
+        echo json_encode(['status' => 'success', 'message' => 'Link generated successfully!', 'link' => $generatedLink]);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to generate link: ' . $conn->error]);
+    }
+    exit();
+}
+
+
 // Pagination setup
 $results_per_page = 10; // Number of records per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page number
@@ -191,15 +209,17 @@ $result = $conn->query($sql);
                             <i class="fa-solid fa-angle-right"></i>
                         </div>
                         <!-- Generate Links Page -->
+                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                         <div class="generateLinksPage" id="generate-links-page">
                             <p>Generate Links</p>
                             <div class="generateLinksField" id="generate-links-field">
-                                <input type="number" min="1" max="100" id="generate-links-num">
-                                <button>Generate</button>
+                                <!-- <input type="number" min="1" max="100" id="generate-links-num"> -->
+                                <button type="submit" name="generate_link">Generate</button>
                             </div>
                             <button class="viewLinksHistory" id="view-links-history">View Links</button>
                             <button class="clearLinksHistory" id="clear-link-history">Clear Links</button>
                         </div>
+                         </form>
 
                         <!-- To switch theme -->
                         <div class="theme" id="theme">

@@ -5,7 +5,7 @@ session_start();
 $servername = "localhost";
 $db_username = "root"; // Your MySQL username (default for XAMPP is "root")
 $db_password = ""; // Your MySQL password (default for XAMPP is empty)
-$dbname = "google_login_db"; // Replace with your actual database name
+$dbname = "connect_db"; // Replace with your actual database name
 
 // Create connection
 $conn = new mysqli($servername, $db_username, $db_password, $dbname);
@@ -71,7 +71,7 @@ $conn->close();
             }
             ?>
             <div class="inputFields username">
-                <input type="text" name="username" id="username" required value="admin">
+                <input type="text" name="username" id="username" required value="john">
                 <label for="username" id="UsernameIco&Txt">
                     <i class="fa fa-user"></i> Username
                 </label>
