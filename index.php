@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Please enter an email";
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

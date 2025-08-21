@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2024 at 07:21 PM
+-- Generation Time: Dec 13, 2024 at 10:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,21 @@ CREATE TABLE `admin_credentials` (
 --
 
 INSERT INTO `admin_credentials` (`id`, `username`, `password`) VALUES
-(1, 'john', '$2y$10$cjJDn15pkzJdVrMbHC8kj.5KVHSRme/cQYfmxfKvc0A5281qX4nHC');
+(1, 'admin', '$2y$10$4clWypS0PVhY7o/3YvNVF.JLbboG9oTV0Jfpbk9ztUTDYp4CGbTXS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `generated_links`
+--
+
+CREATE TABLE `generated_links` (
+  `id` int(11) NOT NULL,
+  `link_id` varchar(255) NOT NULL,
+  `short_url` varchar(255) NOT NULL,
+  `original_url` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,6 +69,13 @@ CREATE TABLE `user_credentials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user_credentials`
+--
+
+INSERT INTO `user_credentials` (`id`, `email`, `password`, `created_date`, `created_time`) VALUES
+(1, 'cindarellanowakeup@gmail.com', 'snowwhite123', '2024-11-28', '14:44:17');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -64,6 +85,13 @@ CREATE TABLE `user_credentials` (
 ALTER TABLE `admin_credentials`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `generated_links`
+--
+ALTER TABLE `generated_links`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `link_id` (`link_id`);
 
 --
 -- Indexes for table `user_credentials`
@@ -82,10 +110,16 @@ ALTER TABLE `admin_credentials`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `generated_links`
+--
+ALTER TABLE `generated_links`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user_credentials`
 --
 ALTER TABLE `user_credentials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
