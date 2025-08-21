@@ -16,34 +16,43 @@ if ($conn->connect_error) {
 }
 
 // Handle login attempt
+// Handle login attempt
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     // Check if the username and password exist in the database
-    $stmt = $conn->prepare("SELECT password FROM admin_credentials WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, password FROM admin_credentials WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($hashed_password);
+        $stmt->bind_result($user_id, $hashed_password);
         $stmt->fetch();
 
         // Verify the password
         if (password_verify($password, $hashed_password)) {
+            // Regenerate session ID for security
+            session_regenerate_id(true);
+            
             // Set session variables to indicate logged in
             $_SESSION['logged_in'] = true;
+            $_SESSION['user_id'] = $user_id;
             $_SESSION['username'] = $username;
+            $_SESSION['login_time'] = time();
 
             // Redirect to user dashboard
             header("Location: user-dash.php");
             exit();
         } else {
             $error = "Invalid username or password";
+            // Log failed attempt
+            error_log("Failed login attempt for username: $username");
         }
     } else {
         $error = "Invalid username or password";
+        // Generic error message to avoid revealing whether username exists
     }
 
     $stmt->close();
